@@ -1,4 +1,5 @@
-ummary__
+#!/usr/bin/python3
+"""__summary__
 - Write a Python script which takes a URL,
 - sends a request to the URL and displays value
 - of the X-Request-Id variable found in the header of the response.
