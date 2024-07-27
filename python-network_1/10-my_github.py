@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-import urllib.request
+"""__summary__
+- Write a Python script that takes your GitHub
+- credentials (username and password) and
+- uses the GitHub API to display your id
+"""
+import requests
 import sys
 
 if __name__ == "__main__":
-    url = "https://intranet.hbtn.io/status"
-    try:
-        with urllib.request.urlopen(url) as response:
-            html_content = response.read()
-            utf8_content = html_content.decode('utf-8')
+    username = sys.argv[1]
+    password = sys.argv[2]
+    url = "https://api.github.com/user"
+    auth = (username, password)
 
-            print("Body response:")
-            print("\t- type:", type(html_content))
-            print("\t- content:", html_content)
-            print("\t- utf8 content:", utf8_content)
-    except urllib.error.HTTPError as e:
-        print("HTTP Error:", e.code, e.reason, file=sys.stderr)
+    reqs = requests.get(url, auth=auth)
+    print(reqs.json().get("id"))
